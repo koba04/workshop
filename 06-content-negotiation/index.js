@@ -16,4 +16,12 @@ var app = module.exports = koa();
 
 app.use(function* () {
 
+  var body = 'hello world';
+  if (this.request.acceptsEncodings('gzip')) {
+    this.response.set('Content-Encoding', 'gzip');
+    this.response.body = yield gzip(body);
+  } else {
+    this.response.body = body;
+  }
+
 })
