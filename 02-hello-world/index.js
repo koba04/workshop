@@ -9,5 +9,7 @@ var app = module.exports = koa();
  */
 
 app.use(function* () {
-
+  this.response.status = 200;
+  this.response.body = 'hello world'
+  this.response.header['Content-Length'] = this.response.body.length;
 });
